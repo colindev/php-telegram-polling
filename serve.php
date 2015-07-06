@@ -12,7 +12,7 @@ use Rde\Terminal;
 
 $token = isset($argv[1]) ? $argv[1] : null;
 if ( ! $token) {
-    Terminal::stderr('請輸入token', "\e[31m", 1);
+    Terminal::stderr("Usage: {$argv[0]} <token> [-vvv]", "\e[31m", 1);
     die;
 }
 
