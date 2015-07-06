@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "11f08349f7b4fb3c5d0ce7874ce68d65",
+    "hash": "212787b00117cd480b31bf9c4c49780b",
     "packages": [
         {
             "name": "rde/php-telegram-connection",
-            "version": "v0.0.2",
+            "version": "v0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/chungyo-rde/php-telegram-connection.git",
-                "reference": "f27c62da2e55b0740d09bc75c0d651e6df7cdc61"
+                "reference": "a21903f26e5407c12e4ca36082f42a86bf6de70f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/chungyo-rde/php-telegram-connection/zipball/f27c62da2e55b0740d09bc75c0d651e6df7cdc61",
-                "reference": "f27c62da2e55b0740d09bc75c0d651e6df7cdc61",
+                "url": "https://api.github.com/repos/chungyo-rde/php-telegram-connection/zipball/a21903f26e5407c12e4ca36082f42a86bf6de70f",
+                "reference": "a21903f26e5407c12e4ca36082f42a86bf6de70f",
                 "shasum": ""
             },
             "require": {
@@ -40,10 +40,10 @@
             ],
             "description": "Telegram API connection",
             "support": {
-                "source": "https://github.com/chungyo-rde/php-telegram-connection/tree/v0.0.2",
+                "source": "https://github.com/chungyo-rde/php-telegram-connection/tree/v0.1.0",
                 "issues": "https://github.com/chungyo-rde/php-telegram-connection/issues"
             },
-            "time": "2015-07-06 08:11:56"
+            "time": "2015-07-06 09:27:51"
         },
         {
             "name": "rde/php-terminal",

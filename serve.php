@@ -5,7 +5,7 @@
 require __DIR__.'/vendor/autoload.php';
 
 use Rde\Telegram\Connection;
-use Rde\Telegram\Structure\Message;
+use Rde\Telegram\Structure;
 use Rde\TelegramPolling\MessageTimer;
 use Rde\TelegramPolling\CommandManager;
 use Rde\Terminal;
@@ -26,7 +26,6 @@ if (in_array('-vvv', $argv)) {
     $verbose = 0;
 }
 
-// 112320679:AAEVl-Y1ZP_8dBxIX0wLUPDUAozW4JwOTrE
 $conn = new Connection($token);
 $mt = new MessageTimer($conn, 30);
 $cm = new CommandManager(__DIR__.'/commands');
@@ -46,7 +45,8 @@ $mt->run(function($msg) use($conn, $cm, $command_exec_fallback, $verbose) {
     $cm->exec(
         $command_string,
         function($output) use($conn, $msg) {
-            $reply = new Message($msg->{'message'}->{'chat'}->{'id'});
+            $reply = new Structure();
+            $reply->{'chat_id'} = $msg->{'message'}->{'chat'}->{'id'};
             $reply->{'text'} = $output;
             $conn->sendMessage($reply);
         },

@@ -13,7 +13,7 @@
     "require": {
         "symfony/console": "2.*",
         "rde/php-terminal": "0.0.*",
-        "rde/php-telegram-connection": "0.0.*"
+        "rde/php-telegram-connection": "0.1.*"
     },
     "license": "MIT",
     "authors": [
