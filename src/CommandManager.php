@@ -7,25 +7,53 @@ use Symfony\Component\Console\Output\BufferedOutput;
 class CommandManager
 {
     private $app;
+    private $commands_dir;
 
-    public function __construct(array $config)
+    public function __construct($commands_dir)
     {
         $this->app = new Application();
+        $this->commands_dir = $commands_dir;
+        if ( ! is_readable($this->commands_dir)) {
+            throw new \InvalidArgumentException("{$commands_dir} 無法讀取");
+        }
     }
 
-    public function exec($command_name, $payload, \Closure $fallback = null)
+    public function exec($command_string, \Closure $callback, \Closure $fallback = null)
     {
+        $dir = opendir($this->commands_dir);
+        while ($filename = readdir($dir)) {
+            if (preg_match('/^(\w+)\.php$/', $filename, $m)) {
+                $cmd = $m[1];
+                $this->app->add(new $cmd);
+            }
+        }
+        closedir($dir);
+
         $output = new BufferedOutput();
 
-        if ( ! $this->app->has($command_name)) {
-            $fallback and $output->write($fallback($command_name, $payload));
-            return null;
+        $result = 2;
+
+        if (preg_match('/^\/(\w+(?::\w+)?)(?:\s+.*)?$/', $command_string, $match)) {
+
+            $command_name = $match[1];
+
+            if ( ! $this->app->has($command_name)) {
+                $fallback and $output->write($fallback(new \Exception("command [{$command_name}] not find")));
+                return null;
+            }
+
+            $cmd = $this->app->find($command_name);
+
+            try {
+                $result = $cmd->run(new StringInput($command_string), $output);
+                $callback($output->fetch());
+            } catch (\Exception $e) {
+                $result = 1;
+                $fallback($e);
+            }
         }
 
-        $input = new StringInput($payload);
-        $cmd = $this->app->find($command_name);
-
-        return $cmd->run($input, $output);
+        return $result;
     }
 
     public function __call($method, $params)

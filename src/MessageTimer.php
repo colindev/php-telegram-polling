@@ -1,15 +1,30 @@
 <?php namespace Rde\TelegramPolling;
 
+use Rde\Telegram\Connection;
+
 class MessageTimer
 {
     private $conn;
     private $timeout = 30;
     public $last_update_id = 0;
 
+    private $pre_update;
+    private $post_update;
+
     public function __construct(Connection $conn, $interval)
     {
         $this->conn = $conn;
         $this->timeout = (int) $interval;
+    }
+
+    public function setPreUpdate(\Closure $handler)
+    {
+        $this->pre_update = $handler;
+    }
+
+    public function setPostUpdate(\Closure $handler)
+    {
+        $this->post_update = $handler;
     }
 
     public function run(\Closure $handler, $keep_alive = true)
@@ -20,8 +35,14 @@ class MessageTimer
             'limit' => 100,
         );
 
+        $pre_update = $this->pre_update ?: function(){};
+        $post_update = $this->post_update ?: function(){};
+
         do {
+
+            $pre_update($payload);
             $messages = $this->conn->getUpdates($payload);
+            $post_update($messages);
 
             if (empty($messages)) {
                 sleep(1);

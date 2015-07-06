@@ -1,7 +1,19 @@
 {
     "name": "rde/telegram-polling-php",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:chungyo-rde/php-terminal.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:chungyo-rde/php-telegram-connection.git"
+        }
+    ],
     "require": {
-        "symfony/console": "2.*"
+        "symfony/console": "2.*",
+        "rde/php-terminal": "0.0.*",
+        "rde/php-telegram-connection": "0.0.*"
     },
     "license": "MIT",
     "authors": [
@@ -11,7 +23,9 @@
         }
     ],
     "autoload": {
-        "classmap": ["commands"],
+        "psr-0": {
+            "": "commands/"
+        },
         "psr-4": {
             "Rde\\TelegramPolling\\": "src/"
         }
