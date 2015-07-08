@@ -8,6 +8,7 @@ use Rde\Telegram\Connection;
 use Rde\Telegram\Structure;
 use Rde\TelegramPolling\MessageTimer;
 use Rde\TelegramPolling\CommandManager;
+use Rde\TelegramPolling\ClosureManager;
 use Rde\Terminal;
 
 $token = isset($argv[1]) ? $argv[1] : null;
@@ -29,6 +30,7 @@ if (in_array('-vvv', $argv)) {
 $conn = new Connection($token);
 $mt = new MessageTimer($conn, 30);
 $cm = new CommandManager(__DIR__.'/commands');
+$csm = new ClosureManager(__DIR__.'/closure');
 
 $command_exec_fallback = function(Exception $e){
     Terminal::stderr($e->getMessage(), "\e[31m");
@@ -37,16 +39,25 @@ $command_exec_fallback = function(Exception $e){
 
 Terminal::stdout('bot: '.json_encode($conn->me), "\e[32m");
 
-$mt->run(function($msg) use($conn, $cm, $command_exec_fallback, $verbose) {
+$mt->run(function($msg) use($conn, $cm, $csm, $command_exec_fallback, $verbose) {
     3 <= $verbose and Terminal::stdout(print_r($msg, 1), "\e[33m");
     $command_string = trim(preg_replace("/^@{$conn->me->{'username'}}/", '', $msg->{'message'}->{'text'}));
     3 <= $verbose and Terminal::stdout('command string = '.$command_string);
 
+    $reply = new Structure();
+    $reply->{'chat_id'} = $msg->{'message'}->{'chat'}->{'id'};
+
+    // closure
+    if ($cmd = $csm->find($command_string)) {
+        $reply->{'text'} = $cmd($msg);
+        $conn->sendMessage($reply);
+        return;
+    }
+
+    // command
     $cm->exec(
         $command_string,
-        function($output) use($conn, $msg) {
-            $reply = new Structure();
-            $reply->{'chat_id'} = $msg->{'message'}->{'chat'}->{'id'};
+        function($output) use($conn, $reply) {
             $reply->{'text'} = $output;
             $conn->sendMessage($reply);
         },
