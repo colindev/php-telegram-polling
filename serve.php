@@ -45,7 +45,7 @@ $mt->run(function($msg) use($conn, $cm, $csm, $command_exec_fallback, $verbose) 
     3 <= $verbose and Terminal::stdout('command string = '.$command_string);
 
     $reply = new Structure();
-    $reply->{'chat_id'} = $msg->{'message'}->{'chat'}->{'id'};
+    $reply->{'chat_id'} = $msg->{'message'}->{'chat'}->{'id'}->value();
 
     // closure
     if ($cmd = $csm->find($command_string)) {

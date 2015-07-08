@@ -50,7 +50,7 @@ class MessageTimer
             }
 
             foreach ($messages as $msg) {
-                $handler($msg);
+                $handler(new AccessStdClass($msg));
             }
 
             $last = end($messages);
