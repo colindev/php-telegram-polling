@@ -11,6 +11,10 @@ class ClosureManager
         $this->dir = $dir;
     }
 
+    /**
+     * @param string $name
+     * @return bool|callable
+     */
     public function find($name)
     {
         if (is_file($filename = $this->resolveFilename($name))) {

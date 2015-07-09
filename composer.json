@@ -8,13 +8,12 @@
         {
             "type": "vcs",
             "url": "git@github.com:chungyo-rde/php-telegram-connection.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:colin1124x/php-object-chain.git"
         }
     ],
-    "require": {
-        "symfony/console": "2.*",
-        "rde/php-terminal": "0.0.*",
-        "rde/php-telegram-connection": "0.1.*"
-    },
     "license": "MIT",
     "authors": [
         {
@@ -22,6 +21,15 @@
             "email": "colin1124x@gmail.com"
         }
     ],
+    "require": {
+        "symfony/console": "2.*",
+        "rde/php-terminal": "0.0.*",
+        "rde/php-telegram-connection": "0.1.*",
+        "colin/php-object-chain": "0.0.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.*"
+    },
     "autoload": {
         "psr-0": {
             "": "commands/"

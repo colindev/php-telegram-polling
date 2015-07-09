@@ -1,6 +1,7 @@
 <?php namespace Rde\TelegramPolling;
 
 use Rde\Telegram\Connection;
+use Colin\ObjectChain;
 
 class MessageTimer
 {
@@ -27,8 +28,13 @@ class MessageTimer
         $this->post_update = $handler;
     }
 
-    public function run(\Closure $handler, $keep_alive = true)
+    public function run(\Closure $handler, $time = 0)
     {
+        $leave =
+            0 === $time ?
+            function(){return true;} :
+            function() use(&$time) {--$time; return 0 < $time;};
+
         $payload = array(
             'timeout' => $this->timeout,
             'offset' => 0,
@@ -50,13 +56,13 @@ class MessageTimer
             }
 
             foreach ($messages as $msg) {
-                $handler(new AccessStdClass($msg));
+                $handler(new ObjectChain($msg));
             }
 
             $last = end($messages);
             $this->last_update_id = (int) $last->{'update_id'};
             $payload['offset'] = $this->last_update_id + 1;
 
-        } while ($keep_alive);
+        } while ($leave());
     }
 }

@@ -40,7 +40,7 @@ $command_exec_fallback = function(Exception $e){
 Terminal::stdout('bot: '.json_encode($conn->me), "\e[32m");
 
 $mt->run(function($msg) use($conn, $cm, $csm, $command_exec_fallback, $verbose) {
-    3 <= $verbose and Terminal::stdout(print_r($msg, 1), "\e[33m");
+    3 <= $verbose and Terminal::stdout(print_r($msg->value(), 1), "\e[33m");
     $command_string = trim(preg_replace("/^@{$conn->me->{'username'}}/", '', $msg->{'message'}->{'text'}));
     3 <= $verbose and Terminal::stdout('command string = '.$command_string);
 
