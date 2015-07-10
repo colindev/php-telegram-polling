@@ -18,7 +18,7 @@ class CommandManager
         }
     }
 
-    public function exec($command_string, \Closure $callback, \Closure $fallback = null)
+    public function exec($command_string, $carry, \Closure $callback, \Closure $fallback = null)
     {
         $dir = opendir($this->commands_dir);
         while ($filename = readdir($dir)) {
@@ -45,7 +45,9 @@ class CommandManager
             $cmd = $this->app->find($command_name);
 
             try {
-                $result = $cmd->run(new StringInput($command_string), $output);
+                $input = new StringInput($command_string);
+                $input->{'carry'} = $carry;
+                $result = $cmd->run($input, $output);
                 $callback($output->fetch());
             } catch (\Exception $e) {
                 $result = 1;

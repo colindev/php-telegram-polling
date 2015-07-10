@@ -32,9 +32,10 @@ $mt = new MessageTimer($conn, 30);
 $cm = new CommandManager(__DIR__.'/commands');
 $csm = new ClosureManager(__DIR__.'/closure');
 
-$command_exec_fallback = function(Exception $e){
+$command_exec_fallback = function(Exception $e) use($verbose) {
     Terminal::stderr($e->getMessage(), "\e[31m");
     Terminal::stderr("{$e->getFile()}:{$e->getLine()}", "\e[31m");
+    3 <= $verbose and Terminal::stderr($e->getTraceAsString(), "\e[31m");
 };
 
 Terminal::stdout('bot: '.json_encode($conn->me), "\e[32m");
@@ -57,6 +58,7 @@ $mt->run(function($msg) use($conn, $cm, $csm, $command_exec_fallback, $verbose) 
     // command
     $cm->exec(
         $command_string,
+        $msg,
         function($output) use($conn, $reply) {
             $reply->{'text'} = $output;
             $conn->sendMessage($reply);

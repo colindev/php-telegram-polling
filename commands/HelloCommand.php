@@ -35,6 +35,7 @@ class HelloCommand extends Command
             $text = strtoupper($text);
         }
 
+        $output->writeln('carry is: '.json_encode($input->{'carry'}->value()));
         $output->writeln($text);
     }
 }
