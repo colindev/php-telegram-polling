@@ -40,6 +40,10 @@ $command_exec_fallback = function(Exception $e) use($verbose) {
 
 Terminal::stdout('bot: '.json_encode($conn->me), "\e[32m");
 
+3 <= $verbose and $mt->setPostUpdate(function($raw){
+    Terminal::stdout('post update: '.json_encode($raw), "\e[35m");
+});
+
 $mt->run(function($msg) use($conn, $cm, $csm, $command_exec_fallback, $verbose) {
     3 <= $verbose and Terminal::stdout(print_r($msg->value(), 1), "\e[33m");
     $command_string = trim(preg_replace("/^@{$conn->me->{'username'}}/", '', $msg->{'message'}->{'text'}));
@@ -50,7 +54,7 @@ $mt->run(function($msg) use($conn, $cm, $csm, $command_exec_fallback, $verbose) 
 
     // closure
     if ($cmd = $csm->find($command_string)) {
-        $reply->{'text'} = $cmd($msg);
+        $reply->{'text'} = $cmd($msg, $conn);
         $conn->sendMessage($reply);
         return;
     }
@@ -58,7 +62,7 @@ $mt->run(function($msg) use($conn, $cm, $csm, $command_exec_fallback, $verbose) 
     // command
     $cm->exec(
         $command_string,
-        $msg,
+        array('message' => $msg, 'connection' => $conn),
         function($output) use($conn, $reply) {
             $reply->{'text'} = $output;
             $conn->sendMessage($reply);

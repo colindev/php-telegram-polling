@@ -15,13 +15,13 @@ class MessageTimerTest extends PHPUnit_Framework_TestCase
         $launch_time = 0;
 
         $mt->setPreUpdate(function($payload) use(&$time, &$launch_time, $tester) {
+            ++$time;
             \Rde\Terminal::stdout("pre payload {$time} ".json_encode($payload), "\e[31m");
             $tester->assertEquals(7, $payload['timeout']);
             $launch_time = microtime(1);
         });
 
         $mt->setPostUpdate(function($msg) use(&$time, &$launch_time) {
-            ++$time;
             $exec_time = microtime(1) - $launch_time;
             \Rde\Terminal::stdout("post {$time} use {$exec_time} ".json_encode($msg), "\e[31m");
         });

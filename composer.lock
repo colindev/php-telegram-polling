@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "colin/php-object-chain",
-            "version": "v0.0.1",
+            "version": "v0.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/colin1124x/php-object-chain.git",
-                "reference": "896406222d198f90d2229da727d531715a00bd81"
+                "reference": "98715833b95bab668c8878f5c3a2b6a79b40d97e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/colin1124x/php-object-chain/zipball/896406222d198f90d2229da727d531715a00bd81",
-                "reference": "896406222d198f90d2229da727d531715a00bd81",
+                "url": "https://api.github.com/repos/colin1124x/php-object-chain/zipball/98715833b95bab668c8878f5c3a2b6a79b40d97e",
+                "reference": "98715833b95bab668c8878f5c3a2b6a79b40d97e",
                 "shasum": ""
             },
             "require": {
@@ -43,23 +43,23 @@
             ],
             "description": "物件索引鍊",
             "support": {
-                "source": "https://github.com/colin1124x/php-object-chain/tree/v0.0.1",
+                "source": "https://github.com/colin1124x/php-object-chain/tree/v0.0.2",
                 "issues": "https://github.com/colin1124x/php-object-chain/issues"
             },
-            "time": "2015-07-08 08:45:36"
+            "time": "2015-07-13 03:09:50"
         },
         {
             "name": "rde/php-telegram-connection",
-            "version": "v0.1.1",
+            "version": "v0.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/chungyo-rde/php-telegram-connection.git",
-                "reference": "3c0eae20eece90d05169ac66d8886043110f6eba"
+                "reference": "3b08a6f013c4f2cefc83e5c10093108a06133f70"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/chungyo-rde/php-telegram-connection/zipball/3c0eae20eece90d05169ac66d8886043110f6eba",
-                "reference": "3c0eae20eece90d05169ac66d8886043110f6eba",
+                "url": "https://api.github.com/repos/chungyo-rde/php-telegram-connection/zipball/3b08a6f013c4f2cefc83e5c10093108a06133f70",
+                "reference": "3b08a6f013c4f2cefc83e5c10093108a06133f70",
                 "shasum": ""
             },
             "require": {
@@ -91,10 +91,10 @@
             ],
             "description": "Telegram API connection",
             "support": {
-                "source": "https://github.com/chungyo-rde/php-telegram-connection/tree/master",
+                "source": "https://github.com/chungyo-rde/php-telegram-connection/tree/v0.1.3",
                 "issues": "https://github.com/chungyo-rde/php-telegram-connection/issues"
             },
-            "time": "2015-07-09 08:18:53"
+            "time": "2015-07-10 09:53:55"
         },
         {
             "name": "rde/php-terminal",
