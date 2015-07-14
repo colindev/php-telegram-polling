@@ -40,8 +40,12 @@ $command_exec_fallback = function(Exception $e) use($verbose) {
 
 Terminal::stdout('bot: '.json_encode($conn->me), "\e[32m");
 
+3 <= $verbose and $mt->setPreUpdate(function($payload){
+    Terminal::stdout(json_encode($payload).' '.time().' ...', "\e[35m", false);
+});
+
 3 <= $verbose and $mt->setPostUpdate(function($raw){
-    Terminal::stdout('post update: '.json_encode($raw), "\e[35m");
+    Terminal::stdout(' '.time().' '.json_encode($raw), "\e[35m");
 });
 
 $mt->run(function($msg) use($conn, $cm, $csm, $command_exec_fallback, $verbose) {
