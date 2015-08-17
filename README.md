@@ -8,7 +8,7 @@ Telegram Bot Server (using long polling)
 
 ```sh
 
-composer create-project rde/telegram-polling
+$ git clone dev@rde-tech.vir888.com:rde-tech/php-telegram-polling.git
 
 ```
 
