@@ -1,4 +1,4 @@
-# rde/telegram-polling-php
+# rde/telegram-polling
 
 Telegram Bot Server (using long polling)
 
@@ -8,7 +8,7 @@ Telegram Bot Server (using long polling)
 
 ```sh
 
-composer create-project rde/telegram-polling-php
+composer create-project rde/telegram-polling
 
 ```
 

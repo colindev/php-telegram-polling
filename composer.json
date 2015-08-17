@@ -1,5 +1,5 @@
 {
-    "name": "rde/php-telegram-polling",
+    "name": "rde/telegram-polling",
     "repositories": [
         {
             "type": "vcs",
