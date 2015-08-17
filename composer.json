@@ -3,11 +3,11 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "git@github.com:chungyo-rde/php-terminal.git"
+            "url": "dev@rde-tech.vir888.com:colin/php-terminal.git"
         },
         {
             "type": "vcs",
-            "url": "git@github.com:chungyo-rde/php-telegram-connection.git"
+            "url": "dev@rde-tech.vir888.com:colin/php-telegram-connection.git"
         },
         {
             "type": "vcs",
