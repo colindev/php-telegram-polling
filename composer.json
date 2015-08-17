@@ -1,5 +1,5 @@
 {
-    "name": "rde/telegram-polling-php",
+    "name": "rde/php-telegram-polling",
     "repositories": [
         {
             "type": "vcs",
@@ -7,11 +7,11 @@
         },
         {
             "type": "vcs",
-            "url": "dev@rde-tech.vir888.com:colin/php-telegram-connection.git"
+            "url": "dev@rde-tech.vir888.com:rde-tech/php-telegram-connection.git"
         },
         {
             "type": "vcs",
-            "url": "git@github.com:colin1124x/php-object-chain.git"
+            "url": "dev@rde-tech.vir888.com:colin/php-object-chain.git"
         }
     ],
     "license": "MIT",
