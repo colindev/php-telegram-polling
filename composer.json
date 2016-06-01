@@ -3,15 +3,15 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "dev@rde-tech.vir888.com:colin/php-terminal.git"
+            "url": "https://github.com/colindev/php-terminal.git"
         },
         {
             "type": "vcs",
-            "url": "dev@rde-tech.vir888.com:rde-tech/php-telegram-connection.git"
+            "url": "https://github.com/colindev/php-telegram-connection.git"
         },
         {
             "type": "vcs",
-            "url": "dev@rde-tech.vir888.com:colin/php-object-chain.git"
+            "url": "https://github.com/colindev/php-object-chain.git"
         }
     ],
     "license": "MIT",
@@ -24,7 +24,7 @@
     "require": {
         "symfony/console": "2.*",
         "rde/php-terminal": "0.0.*",
-        "rde/php-telegram-connection": "0.1.*",
+        "rde/php-telegram-connection": "0.4.*",
         "colin/php-object-chain": "0.0.*"
     },
     "require-dev": {
