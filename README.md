@@ -4,18 +4,6 @@ Telegram Bot Server (using long polling)
 
 ---
 
-### install
-
-```sh
-
-$ git clone dev@rde-tech.vir888.com:rde-tech/php-telegram-polling.git
-
-```
-
-### install composer
-
-請參考 [how to install composer]
-
 ### create command for symfony/console
 
 請參考 [symfony/console]
